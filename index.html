@@ -1,13 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DX Atelier Δ</title>
-  </head>
-  <body class="bg-gradient-to-br from-pink-200 via-purple-200 to-pink-300">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DX Atelier Δ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">DX Atelier Δ</div>
+    <nav>
+      <a href="#about" data-key="about">About</a>
+      <a href="#portfolio" data-key="portfolio">Portfolio</a>
+      <a href="#games" data-key="games">Games</a>
+      <a href="#library" data-key="library">Library</a>
+      <a href="#social" data-key="social">Social Media</a>
+      <a href="#contact" data-key="contact">Contact</a>
+    </nav>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switch">
+      <select id="language">
+        <option value="en" selected>🇬🇧 EN</option>
+        <option value="id">🇮🇩 ID</option>
+        <option value="fr">🇫🇷 FR</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1 data-key="heroTitle">Welcome to DX Atelier</h1>
+    <p data-key="heroSubtitle">Girly, modern, and techy creations</p>
+    <a href="#contact" class="btn" data-key="bookMe">Book me now</a>
+  </section>
+
+  <!-- CONTENT SECTIONS -->
+  <section id="about">
+    <h2 data-key="about">About</h2>
+    <p>Lorem ipsum dolor sit amet, welcome to DX Atelier.</p>
+  </section>
+
+  <section id="portfolio">
+    <h2 data-key="portfolio">Portfolio</h2>
+    <p>Here will be my web design works.</p>
+  </section>
+
+  <section id="games">
+    <h2 data-key="games">Games</h2>
+    <p>Play fun mini games here.</p>
+  </section>
+
+  <section id="library">
+    <h2 data-key="library">Library</h2>
+    <p>My writings and books will be showcased here.</p>
+  </section>
+
+  <section id="social">
+    <h2 data-key="social">Social Media</h2>
+    <p>Find me on Instagram, Twitter, etc.</p>
+  </section>
+
+  <section id="contact">
+    <h2 data-key="contact">Contact</h2>
+    <p>You can reach me via email or social links.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 DX Atelier Δ — All Rights Reserved</p>
+  </footer>
+
+  <canvas id="background"></canvas>
+  <script src="script.js"></script>
+</body>
 </html>
