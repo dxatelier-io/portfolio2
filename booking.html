@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking | DX Atelier Δ</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <div class="loader"></div>
+    <p data-key="loading">Loading...</p>
+  </div>
+
+  <!-- Booking Form -->
+  <div id="booking-form" class="hidden">
+    <h2 data-key="formTitle">Form Booking</h2>
+    <form id="form">
+      <label data-key="name">Nama</label>
+      <input type="text" id="name" required>
+
+      <label data-key="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label data-key="message">Pesan</label>
+      <textarea id="message" required></textarea>
+
+      <label data-key="service">Pilih Layanan</label>
+      <select id="service">
+        <option>Web Design</option>
+        <option>Game Development</option>
+        <option>Writing Project</option>
+      </select>
+
+      <div class="submit-options">
+        <button type="button" onclick="sendWhatsApp()" data-key="sendWA">Kirim via WhatsApp</button>
+        <button type="button" onclick="sendEmail()" data-key="sendEmail">Kirim via Email</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 DX Atelier Δ. All rights reserved.</p>
+  </footer>
+</body>
+</html>
