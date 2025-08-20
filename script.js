@@ -8,7 +8,7 @@ const translations = {
     games: "Games",
     library: "Library",
     heroTitle: "Welcome to DX Atelier",
-    heroSubtitle: "Girly, modern, and techy creations",
+    heroSubtitle: "Your Ideas, Our Digital Canvas",
     bookMe: "Book me now"
   },
   id: {
@@ -19,7 +19,7 @@ const translations = {
     games: "Permainan",
     library: "Perpustakaan",
     heroTitle: "Selamat datang di DX Atelier",
-    heroSubtitle: "Kreasi girly, modern, dan techy",
+    heroSubtitle: "Ide Kamu, Kanvas Digital Kami",
     bookMe: "Pesan sekarang"
   },
   fr: {
@@ -30,7 +30,7 @@ const translations = {
     games: "Jeux",
     library: "Bibliothèque",
     heroTitle: "Bienvenue chez DX Atelier",
-    heroSubtitle: "Créations girly, modernes et techy",
+    heroSubtitle: "Vos Idées, Notre Toile Numérique",
     bookMe: "Réservez-moi"
   }
 };
