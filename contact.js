@@ -2,15 +2,24 @@
 const translations = {
   en: {
     contact_title: "Get in Touch",
-    contact_subtitle: "We’d love to hear from you — collaboration, questions, or ideas."
+    contact_subtitle: "We’d love to hear from you — collaboration, questions, or ideas.",
+    whatsapp_title: "WhatsApp",
+    email_title: "Email",
+    call_title: "International Call"
   },
   id: {
     contact_title: "Hubungi Kami",
-    contact_subtitle: "Kami senang mendengar dari Anda — kolaborasi, pertanyaan, atau ide."
+    contact_subtitle: "Kami senang mendengar dari Anda — kolaborasi, pertanyaan, atau ide.",
+    whatsapp_title: "WhatsApp",
+    email_title: "Email",
+    call_title: "Telepon Internasional"
   },
   fr: {
     contact_title: "Contactez-nous",
-    contact_subtitle: "Nous serions ravis de vous entendre — collaboration, questions ou idées."
+    contact_subtitle: "Nous serions ravis de vous entendre — collaboration, questions ou idées.",
+    whatsapp_title: "WhatsApp",
+    email_title: "Email",
+    call_title: "Appel International"
   }
 };
 
@@ -24,7 +33,7 @@ function applyTranslations(lang) {
   });
 }
 
-// Detect saved language from localStorage
+// Load saved language from localStorage
 const savedLang = localStorage.getItem("language") || "en";
 document.getElementById("language").value = savedLang;
 applyTranslations(savedLang);
@@ -59,7 +68,6 @@ document.querySelectorAll(".card p").forEach((el) => {
       document.body.appendChild(alertBox);
 
       setTimeout(() => { alertBox.style.opacity = "1"; }, 10);
-
       setTimeout(() => {
         alertBox.style.opacity = "0";
         setTimeout(() => { document.body.removeChild(alertBox); }, 300);
