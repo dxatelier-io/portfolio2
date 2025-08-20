@@ -67,7 +67,7 @@ function sendWhatsApp() {
   const service = document.getElementById("service").value;
   const text = `Halo DX Atelier, saya ingin booking.%0A
   Nama: ${name}%0AEmail: ${email}%0APesan: ${message}%0ALayanan: ${service}`;
-  window.open(`https://wa.me/6281234567890?text=${text}`, "_blank");
+  window.open(`https://wa.me/6281387457611?text=${text}`, "_blank");
 }
 
 function sendEmail() {
@@ -77,5 +77,5 @@ function sendEmail() {
   const service = document.getElementById("service").value;
   const subject = `Booking Request from ${name}`;
   const body = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}%0AService: ${service}`;
-  window.location.href = `mailto:yourmail@example.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:dxatelier.io@gmail.com?subject=${subject}&body=${body}`;
 }
