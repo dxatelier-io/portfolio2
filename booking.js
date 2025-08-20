@@ -49,26 +49,30 @@ const translations = {
 
 // Apply translations
 function applyTranslations(lang) {
+  // text content
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (translations[lang] && translations[lang][key]) {
-      // Untuk teks biasa
       el.textContent = translations[lang][key];
-
-      // Untuk placeholder input/textarea
-      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-        el.placeholder = translations[lang][key];
-      }
     }
   });
 
-  // Translate <select> options
-  const serviceSelect = document.getElementById("service");
-  if (serviceSelect) {
-    serviceSelect.options[0].text = translations[lang].service_options.web;
-    serviceSelect.options[1].text = translations[lang].service_options.game;
-    serviceSelect.options[2].text = translations[lang].service_options.writing;
-  }
+  // placeholders
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (translations[lang] && translations[lang][key]) {
+      el.placeholder = translations[lang][key];
+    }
+  });
+
+  // select options
+  document.querySelectorAll("[data-i18n-option]").forEach(el => {
+    const key = el.getAttribute("data-i18n-option");
+    const optionKey = key.replace("service_", ""); // misal: service_web → web
+    if (translations[lang] && translations[lang].service_options[optionKey]) {
+      el.textContent = translations[lang].service_options[optionKey];
+    }
+  });
 }
 
 // Detect saved language from localStorage
