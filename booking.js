@@ -7,6 +7,11 @@ const translations = {
     email: "Email",
     message: "Pesan",
     service: "Pilih Layanan",
+    service_options: {
+      web: "Desain Web",
+      game: "Pengembangan Game",
+      writing: "Menulis"
+    },
     send_whatsapp: "Kirim via WhatsApp",
     send_email: "Kirim via Email"
   },
@@ -17,6 +22,11 @@ const translations = {
     email: "Email",
     message: "Message",
     service: "Choose Service",
+    service_options: {
+      web: "Web Design",
+      game: "Game Development",
+      writing: "Writing"
+    },
     send_whatsapp: "Send via WhatsApp",
     send_email: "Send via Email"
   },
@@ -27,6 +37,11 @@ const translations = {
     email: "Email",
     message: "Message",
     service: "Choisir un service",
+    service_options: {
+      web: "Conception Web",
+      game: "Développement de Jeux",
+      writing: "Écriture"
+    },
     send_whatsapp: "Envoyer via WhatsApp",
     send_email: "Envoyer par Email"
   }
@@ -37,12 +52,23 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (translations[lang] && translations[lang][key]) {
+      // Untuk teks biasa
       el.textContent = translations[lang][key];
-      if (el.placeholder !== undefined) {
+
+      // Untuk placeholder input/textarea
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = translations[lang][key];
       }
     }
   });
+
+  // Translate <select> options
+  const serviceSelect = document.getElementById("service");
+  if (serviceSelect) {
+    serviceSelect.options[0].text = translations[lang].service_options.web;
+    serviceSelect.options[1].text = translations[lang].service_options.game;
+    serviceSelect.options[2].text = translations[lang].service_options.writing;
+  }
 }
 
 // Detect saved language from localStorage
