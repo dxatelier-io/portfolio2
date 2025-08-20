@@ -4,45 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking | DX Atelier Δ</title>
-  <link rel="stylesheet" href="booking.css">
-  <script src="booking.js" defer></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Loading Screen -->
-  <div id="loading">
+  <div id="loading-screen">
     <div class="loader"></div>
-    <p data-key="loading">Loading...</p>
+    <p data-i18n="loading">Loading...</p>
   </div>
 
   <!-- Booking Form -->
   <div id="booking-form" class="hidden">
-    <h2 data-key="formTitle">Form Booking</h2>
-    <form id="form">
-      <label data-key="name">Nama</label>
-      <input type="text" id="name" required>
+    <h2 data-i18n="booking_title">Formulir Booking</h2>
 
-      <label data-key="email">Email</label>
-      <input type="email" id="email" required>
+    <label data-i18n="name">Nama</label>
+    <input type="text" id="name" placeholder="Nama">
 
-      <label data-key="message">Pesan</label>
-      <textarea id="message" required></textarea>
+    <label data-i18n="email">Email</label>
+    <input type="email" id="email" placeholder="Email">
 
-      <label data-key="service">Pilih Layanan</label>
-      <select id="service">
-        <option>Web Design</option>
-        <option>Game Development</option>
-        <option>Writing Project</option>
-      </select>
+    <label data-i18n="message">Pesan</label>
+    <textarea id="message" placeholder="Pesan"></textarea>
 
-      <div class="submit-options">
-        <button type="button" onclick="sendWhatsApp()" data-key="sendWA">Kirim via WhatsApp</button>
-        <button type="button" onclick="sendEmail()" data-key="sendEmail">Kirim via Email</button>
-      </div>
-    </form>
+    <label data-i18n="service">Pilih Layanan</label>
+    <select id="service">
+      <option value="web">Web Design</option>
+      <option value="game">Game Development</option>
+      <option value="writing">Writing</option>
+    </select>
+
+    <div class="btn-group">
+      <button onclick="sendWhatsApp()" data-i18n="send_whatsapp">Kirim via WhatsApp</button>
+      <button onclick="sendEmail()" data-i18n="send_email">Kirim via Email</button>
+    </div>
   </div>
 
-  <footer>
-    <p>© 2025 DX Atelier Δ. All rights reserved.</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
