@@ -4,7 +4,7 @@
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
-  const total = Number(document.body.dataset.pageTotal || 1); // FIX: dataset.pageTotal yang benar
+  const total = Number(document.body.dataset.pageTotal || 1); // dataset yg benar
 
   if (progressEl && total > 0) {
     const pct = Math.max(0, Math.min(100, Math.round((current / total) * 100)));
@@ -18,22 +18,37 @@
   window.addEventListener(
     'keydown',
     (e) => {
-      if (e.key === 'ArrowRight' && nextHref) {
-        window.location.href = nextHref;
-      }
-      if (e.key === 'ArrowLeft' && prevHref) {
-        window.location.href = prevHref;
-      }
+      if (e.key === 'ArrowRight' && nextHref) window.location.href = nextHref;
+      if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
     },
     { passive: true }
   );
 })();
 
-// Download as JPEG button (pakai html2canvas)
+// Download JPEG untuk tombol yang sudah ada di HTML
 document.addEventListener('DOMContentLoaded', function () {
-  const nav = document.querySelector('.nav');
+  const downloadBtn = document.getElementById('downloadJpeg');
   const page = document.querySelector('.page-card');
 
+  if (!downloadBtn || !page) return;
+
+  downloadBtn.addEventListener('click', () => {
+    if (typeof html2canvas === 'undefined') {
+      alert('html2canvas belum dimuat. Pastikan script html2canvas sudah include sebelum ebook.js');
+      return;
+    }
+
+    html2canvas(page, {
+      scale: 3, // resolusi tinggi
+      useCORS: true
+    }).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
+      link.click();
+    });
+  });
+});
   // Pastikan elemen nav dan page ada
   if (!nav || !page) return;
 
