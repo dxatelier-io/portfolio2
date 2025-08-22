@@ -1,0 +1,98 @@
+/* eBook styling — girly techy konsisten */
+:root{
+  --pink:#ff5fa2;
+  --pink-soft:#ff85c2;
+  --ink:#333;
+  --paper: rgba(255,255,255,0.9);
+  --glass: rgba(255,255,255,0.25);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  color: var(--ink);
+  overflow-x:hidden;
+}
+
+/* Top bar */
+.header{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 22px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+}
+.brand{font-weight:700}
+.brand span{color:var(--pink)}
+.header a{
+  text-decoration:none; color:#fff; font-weight:500;
+  background: var(--pink);
+  padding:8px 14px; border-radius:999px;
+}
+.header a:hover{background:var(--pink-soft)}
+
+.container{
+  max-width:900px; margin:40px auto; padding:0 20px;
+}
+
+.page-card{
+  background: var(--paper);
+  border:1px solid #ffd1e0;
+  border-radius:18px;
+  padding:28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* meta + title */
+.meta{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:14px; font-size:0.9rem; opacity:0.8;
+}
+.progress{
+  height:6px; background:#ffe6f2; border-radius:999px; overflow:hidden; margin:6px 0 18px;
+}
+.progress > div{
+  height:100%; width:0; background:var(--pink); transition:width .4s ease;
+}
+
+/* typography */
+.h1{
+  font-size:1.6rem; font-weight:700; color:#111; margin:4px 0 8px;
+}
+.h2{
+  font-size:1rem; font-weight:600; color:#666; margin-bottom:18px;
+}
+.p{
+  line-height:1.9; font-size:1.05rem; color:#222;
+  text-wrap:pretty;
+}
+.p + .p{margin-top:14px}
+
+/* nav */
+.nav{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; margin-top:22px;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 16px; border-radius:12px; border:1px solid #ffd1e0;
+  background:#fff; color:#111; text-decoration:none; font-weight:600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,0.12); background:#fff5fa}
+.btn.primary{background:var(--pink); color:#fff; border-color:transparent}
+.btn.primary:hover{background:var(--pink-soft)}
+
+.footer{
+  text-align:center; color:#222; padding:30px 12px; opacity:0.8;
+}
+
+/* small */
+@media (max-width:600px){
+  .h1{font-size:1.35rem}
+  .p{font-size:1rem}
+}
