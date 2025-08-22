@@ -3,67 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library | DX Atelier Δ</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Library - DX Atelier Δ</title>
   <link rel="stylesheet" href="library.css">
 </head>
 <body>
   <header>
     <div class="logo">DX Atelier Δ</div>
     <nav>
-      <a href="index.html#about">About</a>
-      <a href="index.html#portfolio">Portfolio</a>
-      <a href="index.html#games">Games</a>
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="games.html">Games</a>
       <a href="library.html" class="active">Library</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section class="library-section">
-    <h1>Library</h1>
-    <p>Explore my books: prose, novels, and more.</p>
+  <section class="library-hero">
+    <h1>My Library</h1>
+    <p>Explore my books and writings.</p>
+  </section>
 
-    <!-- FILTER BAR -->
-    <div class="filter-bar">
-      <div class="filter-group">
-        <span>Status:</span>
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="ongoing">On Going</button>
-        <button data-filter="coming-soon">Coming Soon</button>
-        <button data-filter="completed">Completed</button>
-      </div>
-      <div class="filter-group">
-        <span>Category:</span>
-        <button data-category="all" class="active">All</button>
-        <button data-category="study">Study Books</button>
-        <button data-category="prose">Prose</button>
-        <button data-category="novel">Novel</button>
-      </div>
+  <!-- FILTERS -->
+  <section class="filters">
+    <div class="status-filter">
+      <label>Filter by Status:</label>
+      <button data-status="all">All</button>
+      <button data-status="ongoing">On Going</button>
+      <button data-status="upcoming">Upcoming</button>
+      <button data-status="completed">Completed</button>
+    </div>
+    <div class="category-filter">
+      <label>Filter by Category:</label>
+      <button data-category="all">All</button>
+      <button data-category="prose">Prose</button>
+      <button data-category="novel">Novel</button>
+      <button data-category="education">Educational</button>
+    </div>
+  </section>
+
+  <!-- BOOK LIST -->
+  <section class="book-list">
+    <div class="book-card" data-status="ongoing" data-category="prose">
+      <h3>At Least, Apologize to Me,</h3>
+      <p>Category: Prose</p>
+      <p>Status: On Going</p>
     </div>
 
-    <!-- BOOK GRID -->
-    <div class="book-grid">
-      <!-- Contoh buku -->
-      <div class="book-card" data-status="ongoing" data-category="prose">
-        <img src="img/autumn_in_april.jpg" alt="Autumn in April">
-        <h3>Autumn in April</h3>
-        <span class="tag ongoing">On Going</span>
-        <span class="tag prose">Prose</span>
-      </div>
-      <div class="book-card" data-status="completed" data-category="novel">
-        <img src="img/ten_of_april.jpg" alt="Ten of April">
-        <h3>Ten of April</h3>
-        <span class="tag completed">Completed</span>
-        <span class="tag novel">Novel</span>
-      </div>
-      <div class="book-card" data-status="coming-soon" data-category="study">
-        <img src="img/am_i_not_worthy.jpg" alt="Am I Not Worthy?">
-        <h3>Am I Not Worthy?</h3>
-        <span class="tag coming-soon">Coming Soon</span>
-        <span class="tag study">Study Book</span>
-      </div>
-      <!-- Tambah buku lainnya -->
+    <div class="book-card" data-status="upcoming" data-category="novel">
+      <h3>What Happens When I Stop?</h3>
+      <p>Category: Novel</p>
+      <p>Status: Upcoming</p>
     </div>
+
+    <!-- Tambah buku lain di sini sesuai kebutuhan -->
   </section>
 
   <footer>
