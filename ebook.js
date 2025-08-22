@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
       useCORS: true
     }).then((canvas) => {
       const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
+      link.download = document.title.replace(/\s+/g, '_') + '.png';
+      link.href = canvas.toDataURL('image/png', 1.0); // kualitas maksimal
       link.click();
     });
   });
