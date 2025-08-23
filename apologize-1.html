@@ -56,19 +56,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
     document.getElementById('Save').addEventListener('click', () => {
-      // Ambil seluruh body agar gradient ikut tersimpan
-      html2canvas(document.body, { 
-        scale: 4,
-        backgroundColor: null, // pakai background asli CSS
-        useCORS: true
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 1.0);
-        link.click();
-      });
-    });
+  const page = document.querySelector('.page-card'); // ambil elemen dengan class
+  html2canvas(page, { scale: 2 }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'dxatelier1.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+  });
+});
   </script>
-  <script src="ebook.js"></script>
+<script src="ebook.js"></script>
 </body>
 </html>
