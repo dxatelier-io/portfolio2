@@ -21,8 +21,6 @@ body{
   position:sticky; top:0; z-index:10;
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 22px;
-  background: var(--glass);
-  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.35);
 }
 .brand{font-weight:700}
@@ -43,7 +41,6 @@ body{
   border: 1px solid #ffd1e0;
   border-radius: 18px;
   padding: 28px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   color: #222;
 }
 
