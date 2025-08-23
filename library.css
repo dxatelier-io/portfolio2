@@ -79,17 +79,31 @@ header nav a.active {
 }
 
 .book-card {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
   border-radius: 15px;
-  padding: 20px;
-  color: white;
+  padding: 25px 20px;
+  color: #fff;
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .book-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.book-card h3 a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.book-card h3 a:hover {
+  color: #ffdde1;
 }
 
 footer {
