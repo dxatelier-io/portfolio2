@@ -113,3 +113,19 @@ footer {
   backdrop-filter: blur(8px);
   margin-top: 50px;
 }
+
+@media (max-width: 600px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .book-list {
+    padding: 10px 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .library-hero h1 {
+    font-size: 2rem;
+  }
+}
+
