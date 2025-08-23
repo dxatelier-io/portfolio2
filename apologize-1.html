@@ -56,17 +56,17 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    document.querySelector('#downloadJpeg').addEventListener('click', () => {.addEventListener('click', () => {
-      html2canvas(document.querySelector('.page-card'), {
-        scale: 2
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'autumn-in-april-page2.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 0.95);
-        link.click();
-      });
+    <script>
+  document.querySelector('#downloadJpeg').addEventListener('click', () => {
+    const target = document.querySelector('.page-card');
+    html2canvas(target, { scale: 2, useCORS: true }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'autumn-in-april-page1.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.95);
+      link.click();
     });
-  </script>
+  });
+</script>
 <script src="ebook.js"></script>
 </body>
 </html>
