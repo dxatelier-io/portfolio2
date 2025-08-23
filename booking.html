@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,32 +10,32 @@
   <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loader"></div>
-    <p data-i18n="loading">Loading...</p>
+    <p>Loading...</p>
   </div>
 
   <!-- Booking Form -->
   <div id="booking-form" class="hidden">
-    <h2 data-i18n="booking_title">Formulir Booking</h2>
+    <h2>Booking Form</h2>
 
-    <label data-i18n="name">Nama</label>
-    <input type="text" id="name" data-i18n-placeholder="name" placeholder="Nama">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
 
-    <label data-i18n="email">Email</label>
-    <input type="email" id="email" data-i18n-placeholder="email" placeholder="Email">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email">
 
-    <label data-i18n="message">Pesan</label>
-    <textarea id="message" data-i18n-placeholder="message" placeholder="Pesan"></textarea>
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Write your message"></textarea>
 
-    <label data-i18n="service">Pilih Layanan</label>
+    <label for="service">Select Service</label>
     <select id="service">
-      <option value="web" data-i18n-option="service_web">Web Design</option>
-      <option value="game" data-i18n-option="service_game">Game Development</option>
-      <option value="writing" data-i18n-option="service_writing">Writing</option>
+      <option value="web">Web Design</option>
+      <option value="game">Game Development</option>
+      <option value="writing">Writing</option>
     </select>
 
     <div class="btn-group">
-      <button onclick="sendWhatsApp()" data-i18n="send_whatsapp">Kirim via WhatsApp</button>
-      <button onclick="sendEmail()" data-i18n="send_email">Kirim via Email</button>
+      <button onclick="sendWhatsApp()">Send via WhatsApp</button>
+      <button onclick="sendEmail()">Send via Email</button>
     </div>
   </div>
 
