@@ -4,7 +4,7 @@
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
-  const total = Number(document.body.dataset.pageTotal || 1); // dataset yg benar
+  const total = Number(document.body.dataset.pageTotal || 1);
 
   if (progressEl && total > 0) {
     const pct = Math.max(0, Math.min(100, Math.round((current / total) * 100)));
@@ -34,6 +34,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   downloadBtn.addEventListener('click', () => {
     if (typeof html2canvas === 'undefined') {
+      alert('html2canvas belum dimuat. Pastikan script html2canvas sudah include sebelum ebook.js');
+      return;
+    }
+
+    html2canvas(page, {
+      scale: 3, // resolusi tinggi
+      useCORS: true
+    }).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
+      link.click();
+    });
+  });
+});
       alert('html2canvas belum dimuat. Pastikan script html2canvas sudah include sebelum ebook.js');
       return;
     }
