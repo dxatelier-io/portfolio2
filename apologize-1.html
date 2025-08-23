@@ -46,7 +46,7 @@
       <nav class="nav">
         <a class="btn" data-prev aria-disabled="true" style="pointer-events:none;opacity:.5">← Previous</a>
         <a class="btn primary" data-next href="apologize-2.html">Next →</a>
-        <button id="downloadJpeg" type="button" class="btn" style="margin-left:10px;">Download as JPEG</button>
+        <button id="Save" type="button" class="btn" style="margin-left:10px;">Download as JPEG</button>
       </nav>
     </article>
   </main>
@@ -55,7 +55,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    document.getElementById('downloadJpeg').addEventListener('click', () => {
+    document.getElementById('Save').addEventListener('click', () => {
       html2canvas(document.getElementById('content'), {
         scale: 2
       }).then(canvas => {
