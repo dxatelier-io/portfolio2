@@ -128,3 +128,10 @@ body, .page-card {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.capture-desktop {
+  width: 1024px;   /* atau ukuran desktop */
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+
