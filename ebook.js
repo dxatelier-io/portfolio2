@@ -4,7 +4,7 @@
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
-  const total = Number(document.body.dataset.pageTotal || 1); // dataset yg benar
+  const total = Number(document.body.dataset.pageTotal || 1);
 
   if (progressEl && total > 0) {
     const pct = Math.max(0, Math.min(100, Math.round((current / total) * 100)));
@@ -43,43 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
       useCORS: true
     }).then((canvas) => {
       const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.png';
-      link.href = canvas.toDataURL('image/png', 1.0); // kualitas maksimal
-      link.click();
-    });
-  });
-});
-  // Pastikan elemen nav dan page ada
-  if (!nav || !page) return;
-
-  // Tambah tombol Download
-  const downloadBtn = document.createElement('button');
-  downloadBtn.textContent = 'Download as JPEG';
-  downloadBtn.classList.add('btn');
-  downloadBtn.style.marginTop = '20px';
-  downloadBtn.style.cursor = 'pointer';
-
-  nav.appendChild(downloadBtn);
-
-  downloadBtn.addEventListener('click', () => {
-    if (typeof html2canvas === 'undefined') {
-      alert('html2canvas belum dimuat. Pastikan script html2canvas sudah di-include sebelum ebook.js');
-      return;
-    }
-
-    html2canvas(page, {
-      scale: 3, // resolusi tinggi
-      useCORS: true
-    }).then((canvas) => {
-      const link = document.createElement('a');
       link.download = document.title.replace(/\s+/g, '_') + '.jpg';
       link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
-      link.click();
-    });
-  });
-});
-      link.download = document.title.replace(/\s+/g, "_") + ".jpg";
-      link.href = canvas.toDataURL("image/jpeg", 1.0); // kualitas maksimal
       link.click();
     });
   });
