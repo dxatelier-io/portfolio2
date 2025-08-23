@@ -1,6 +1,6 @@
-// ebook.js
+// ebook.js — HD download fixed
 
-// Simple ebook helpers: progress bar + keyboard navigation
+// Progress Bar + Keyboard Navigation
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
@@ -11,21 +11,16 @@
     progressEl.style.width = pct + '%';
   }
 
-  // Keyboard navigation
   const prevHref = document.querySelector('[data-prev]')?.getAttribute('href') || null;
   const nextHref = document.querySelector('[data-next]')?.getAttribute('href') || null;
 
-  window.addEventListener(
-    'keydown',
-    (e) => {
-      if (e.key === 'ArrowRight' && nextHref) window.location.href = nextHref;
-      if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
-    },
-    { passive: true }
-  );
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && nextHref) window.location.href = nextHref;
+    if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
+  }, { passive: true });
 })();
 
-// Download JPEG untuk tombol yang sudah ada di HTML
+// Download JPEG / PNG HD — fixed
 document.addEventListener('DOMContentLoaded', function () {
   const downloadBtn = document.getElementById('downloadJpeg');
   const page = document.querySelector('.page-card');
@@ -34,18 +29,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   downloadBtn.addEventListener('click', () => {
     if (typeof html2canvas === 'undefined') {
-      alert('html2canvas belum dimuat. Pastikan script html2canvas sudah include sebelum ebook.js');
+      alert('html2canvas belum dimuat. Include html2canvas sebelum ebook.js');
       return;
     }
 
-    html2canvas(page, {
-      scale: 3, // resolusi tinggi
+    // clone elemen page-card agar filter/backdrop tidak mengganggu
+    const clone = page.cloneNode(true);
+    clone.style.filter = 'none';
+    clone.style.backdropFilter = 'none';
+    clone.style.position = 'absolute';
+    clone.style.top = '-9999px';
+    document.body.appendChild(clone);
+
+    html2canvas(clone, {
+      scale: 4,
+      backgroundColor: null,
       useCORS: true
     }).then((canvas) => {
       const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
+      link.download = document.title.replace(/\s+/g, '_') + '.png';
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
+      document.body.removeChild(clone);
     });
   });
 });
