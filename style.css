@@ -43,13 +43,6 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-.lang-switch select {
-  padding: 5px;
-  border-radius: 8px;
-  border: none;
-  font-size: 0.9rem;
-}
-
 .hero {
   height: 100vh;
   display: flex;
