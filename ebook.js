@@ -20,14 +20,6 @@
   }, { passive: true });
 })();
     // clone elemen page-card agar filter/backdrop tidak mengganggu
-    document.addEventListener('DOMContentLoaded', () => {
-  const downloadBtn = document.getElementById('Save') || document.getElementById('downloadJpeg');
-  const page = document.querySelector('.page-card');
-
-  if (!downloadBtn || !page) return;
-
-  downloadBtn.addEventListener('click', () => {
-    // clone untuk menghilangkan filter/backdrop
     const clone = page.cloneNode(true);
     clone.style.filter = 'none';
     clone.style.backdropFilter = 'none';
@@ -36,13 +28,13 @@
     document.body.appendChild(clone);
 
     html2canvas(clone, {
-      scale: 4, // HD
-      backgroundColor: '#fff', // pastikan background solid
+      scale: 4,
+      backgroundColor: null,
       useCORS: true
     }).then((canvas) => {
       const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 1.0);
+      link.download = document.title.replace(/\s+/g, '_') + '.png';
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
       document.body.removeChild(clone);
     });
