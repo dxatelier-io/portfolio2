@@ -1,8 +1,6 @@
-// ebook.js — Full HD-ready version
+// ebook.js — HD download fixed
 
-// ===============================
 // Progress Bar + Keyboard Navigation
-// ===============================
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
@@ -13,7 +11,6 @@
     progressEl.style.width = pct + '%';
   }
 
-  // Keyboard navigation
   const prevHref = document.querySelector('[data-prev]')?.getAttribute('href') || null;
   const nextHref = document.querySelector('[data-next]')?.getAttribute('href') || null;
 
@@ -23,9 +20,7 @@
   }, { passive: true });
 })();
 
-// ===============================
-// Download JPEG / PNG HD
-// ===============================
+// Download JPEG / PNG HD — fixed
 document.addEventListener('DOMContentLoaded', function () {
   const downloadBtn = document.getElementById('downloadJpeg');
   const page = document.querySelector('.page-card');
@@ -34,25 +29,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   downloadBtn.addEventListener('click', () => {
     if (typeof html2canvas === 'undefined') {
-      alert('html2canvas belum dimuat. Pastikan script html2canvas sudah include sebelum ebook.js');
+      alert('html2canvas belum dimuat. Include html2canvas sebelum ebook.js');
       return;
     }
 
-    // Backup dan disable filter/backdrop temporarily
-    const originalFilter = page.style.filter;
-    page.style.filter = 'none';
+    // clone elemen page-card agar filter/backdrop tidak mengganggu
+    const clone = page.cloneNode(true);
+    clone.style.filter = 'none';
+    clone.style.backdropFilter = 'none';
+    clone.style.position = 'absolute';
+    clone.style.top = '-9999px';
+    document.body.appendChild(clone);
 
-    html2canvas(page, {
-      scale: 4,             // HD resolution
-      backgroundColor: null, // pakai CSS background asli
+    html2canvas(clone, {
+      scale: 4,
+      backgroundColor: null,
       useCORS: true
     }).then((canvas) => {
-      page.style.filter = originalFilter; // restore filter
-
       const link = document.createElement('a');
       link.download = document.title.replace(/\s+/g, '_') + '.png';
-      link.href = canvas.toDataURL('image/png', 1.0); // kualitas maksimal
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
+      document.body.removeChild(clone);
     });
   });
 });
