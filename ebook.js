@@ -19,21 +19,3 @@
     if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
   }, { passive: true });
 })();
-    // clone elemen page-card agar filter/backdrop tidak mengganggu
-    const clone = page.cloneNode(true);
-    clone.style.filter = 'none';
-    clone.style.backdropFilter = 'none';
-    clone.style.position = 'absolute';
-    clone.style.top = '-9999px';
-    document.body.appendChild(clone);
-
-    html2canvas(document.body, {
-  scale: 4,
-  backgroundColor: null, // biar ikut CSS asli
-  useCORS: true
-}).then((canvas) => {
-  const link = document.createElement('a');
-  link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-  link.href = canvas.toDataURL('image/jpeg', 1.0);
-  link.click();
-});
