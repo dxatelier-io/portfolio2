@@ -52,7 +52,19 @@
   </main>
 
   <footer class="footer">© 2025 DX Atelier Δ — All Rights Reserved</footer>
- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    document.getElementById('save').addEventListener('click', () => {
+      html2canvas(document.getElementById('content'), {
+        scale: 2
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'autumn-in-april-page2.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+        link.click();
+      });
+    });
 <script src="ebook.js"></script>
 </body>
 </html>
