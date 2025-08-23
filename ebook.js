@@ -1,6 +1,8 @@
-// ebook.js
+// ebook.js — Full HD-ready version
 
-// Simple ebook helpers: progress bar + keyboard navigation
+// ===============================
+// Progress Bar + Keyboard Navigation
+// ===============================
 (function () {
   const progressEl = document.querySelector('[data-progress]');
   const current = Number(document.body.dataset.pageCurrent || 1);
@@ -15,17 +17,15 @@
   const prevHref = document.querySelector('[data-prev]')?.getAttribute('href') || null;
   const nextHref = document.querySelector('[data-next]')?.getAttribute('href') || null;
 
-  window.addEventListener(
-    'keydown',
-    (e) => {
-      if (e.key === 'ArrowRight' && nextHref) window.location.href = nextHref;
-      if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
-    },
-    { passive: true }
-  );
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && nextHref) window.location.href = nextHref;
+    if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
+  }, { passive: true });
 })();
 
-// Download JPEG untuk tombol yang sudah ada di HTML
+// ===============================
+// Download JPEG / PNG HD
+// ===============================
 document.addEventListener('DOMContentLoaded', function () {
   const downloadBtn = document.getElementById('downloadJpeg');
   const page = document.querySelector('.page-card');
@@ -38,15 +38,20 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
+    // Backup dan disable filter/backdrop temporarily
+    const originalFilter = page.style.filter;
+    page.style.filter = 'none';
+
     html2canvas(page, {
-  backgroundColor: '#fff', // ini bikin background solid
-  scale: 3,
-  useCORS: true
-})
+      scale: 4,             // HD resolution
+      backgroundColor: null, // pakai CSS background asli
+      useCORS: true
     }).then((canvas) => {
+      page.style.filter = originalFilter; // restore filter
+
       const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 1.0); // kualitas maksimal
+      link.download = document.title.replace(/\s+/g, '_') + '.png';
+      link.href = canvas.toDataURL('image/png', 1.0); // kualitas maksimal
       link.click();
     });
   });
