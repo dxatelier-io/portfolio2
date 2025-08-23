@@ -39,8 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     html2canvas(page, {
-      scale: 3, // resolusi tinggi
-      useCORS: true
+  backgroundColor: '#fff', // ini bikin background solid
+  scale: 3,
+  useCORS: true
+})
     }).then((canvas) => {
       const link = document.createElement('a');
       link.download = document.title.replace(/\s+/g, '_') + '.jpg';
