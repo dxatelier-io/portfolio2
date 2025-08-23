@@ -19,20 +19,6 @@
     if (e.key === 'ArrowLeft' && prevHref) window.location.href = prevHref;
   }, { passive: true });
 })();
-
-// Download JPEG / PNG HD — fixed
-document.addEventListener('DOMContentLoaded', function () {
-  const downloadBtn = document.getElementById('downloadJpeg');
-  const page = document.querySelector('.page-card');
-
-  if (!downloadBtn || !page) return;
-
-  downloadBtn.addEventListener('click', () => {
-    if (typeof html2canvas === 'undefined') {
-      alert('html2canvas belum dimuat. Include html2canvas sebelum ebook.js');
-      return;
-    }
-
     // clone elemen page-card agar filter/backdrop tidak mengganggu
     const clone = page.cloneNode(true);
     clone.style.filter = 'none';
