@@ -27,16 +27,13 @@
     clone.style.top = '-9999px';
     document.body.appendChild(clone);
 
-    html2canvas(clone, {
-      scale: 4,
-      backgroundColor: null,
-      useCORS: true
-    }).then((canvas) => {
-      const link = document.createElement('a');
-      link.download = document.title.replace(/\s+/g, '_') + '.png';
-      link.href = canvas.toDataURL('image/png', 1.0);
-      link.click();
-      document.body.removeChild(clone);
-    });
-  });
+    html2canvas(document.body, {
+  scale: 4,
+  backgroundColor: null, // biar ikut CSS asli
+  useCORS: true
+}).then((canvas) => {
+  const link = document.createElement('a');
+  link.download = document.title.replace(/\s+/g, '_') + '.jpg';
+  link.href = canvas.toDataURL('image/jpeg', 1.0);
+  link.click();
 });
