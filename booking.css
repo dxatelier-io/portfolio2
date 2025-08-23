@@ -60,6 +60,13 @@ body {
   width: 100%; margin-bottom: 15px;
   padding: 10px; border-radius: 10px; border: 1px solid #ccc;
 }
+#booking-form input:focus,
+#booking-form textarea:focus,
+#booking-form select:focus {
+  outline: none;
+  border-color: #e91e63;
+  box-shadow: 0 0 5px rgba(233,30,99,0.5);
+}
 
 .submit-options { display: flex; gap: 10px; justify-content: space-between; }
 .submit-options button {
