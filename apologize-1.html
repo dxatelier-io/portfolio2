@@ -46,7 +46,7 @@
       <nav class="nav">
         <a class="btn" data-prev aria-disabled="true" style="pointer-events:none;opacity:.5">← Previous</a>
         <a class="btn primary" data-next href="apologize-2.html">Next →</a>
-        <button id="downloadJpeg" type="button" class="btn" style="margin-left:10px;">Download as JPEG</button>
+        <button id="Save" type="button" class="btn" style="margin-left:10px;">Download as JPEG</button>
       </nav>
     </article>
   </main>
@@ -55,16 +55,16 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    document.getElementById('downloadJpeg').addEventListener('click', () => {
-      html2canvas(document.querySelector('.page-card'), {
-        scale: 2
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'autumn-in-april-page2.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 0.95);
-        link.click();
-      });
-    });
+    document.getElementById('Save').addEventListener('click', () => {
+  const page = document.querySelector('.page-card'); // ambil elemen dengan class
+  html2canvas(page, { scale: 2 }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'autumn-in-april-page1.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+  });
+});
+  </script>
 <script src="ebook.js"></script>
 </body>
 </html>
