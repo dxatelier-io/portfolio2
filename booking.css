@@ -162,3 +162,20 @@ body {
 .btn-group button:hover {
   background: #c2185b;
 }
+
+@media (max-width: 600px) {
+  #booking-form {
+    margin: 40px 20px;
+    padding: 20px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
