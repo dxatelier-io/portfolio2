@@ -56,7 +56,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    document.getElementById('downloadJpeg').addEventListener('click', () => {
+    document.querySelector('downloadJpeg').addEventListener('click', () => {
       html2canvas(document.getElementById('.page-card'), {
         scale: 2
       }).then(canvas => {
