@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folder 1 — DX Atelier Δ Archive</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .folder-container {
+      padding: 120px 40px;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .post-link {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .post-link:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-5px);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      background: #ff5fa2;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #ff85c2;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="folder-container">
+    <h1>Folder 1 — Personal Writings</h1>
+    <div class="posts">
+      <div class="post-link" onclick="openPost('post1.html')">📝 Post 1</div>
+      <div class="post-link" onclick="openPost('post2.html')">📝 Post 2</div>
+      <div class="post-link" onclick="openPost('post3.html')">📝 Post 3</div>
+    </div>
+    <div style="text-align:center;">
+      <a href="secret.html" class="back-btn">← Back to Archive</a>
+    </div>
+  </div>
+
+  <script>
+    function openPost(link) {
+      // kalau mau kasih password per post tinggal tambahin prompt lagi
+      // contoh: 
+      // let pwd = prompt("Enter password for this post:");
+      // if(pwd === "postpass123") { window.location.href = link; } else { alert("Wrong password"); }
+
+      window.location.href = link;
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
