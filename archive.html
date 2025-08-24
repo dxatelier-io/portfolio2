@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Archive — DX Atelier Δ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .archive-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+      color: #fff;
+    }
+
+    .archive-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .archive-box h2 {
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+    }
+
+    .archive-box input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+
+    .archive-box button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #ff5fa2;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .archive-box button:hover {
+      background: #ff85c2;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="archive-container">
+    <div class="archive-box">
+      <h2>Enter Password to Access Archive</h2>
+      <input type="password" id="archivePassword" placeholder="Enter password...">
+      <button onclick="checkPassword()">Unlock</button>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("archivePassword").value;
+      const correctPassword = "dxsecret2025"; // Ganti sesuai kebutuhan
+
+      if (input === correctPassword) {
+        window.location.href = "secret.html"; // direct ke halaman berikut
+      } else {
+        alert("Access denied: Incorrect password.");
+      }
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
