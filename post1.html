@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post 1</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .post {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 50px;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .post-content {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      line-height: 1.8;
+      font-size: 1.2rem;
+    }
+
+    .save-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background: #ff5fa2;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="post">
+    <div id="postContent" class="post-content">
+      <h2>My Untold Feelings</h2>
+      <p>
+        Even in silence, my heart keeps writing your name in places where no one will ever look.
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <button class="save-btn" onclick="saveAsImage()">Save as Image</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    function saveAsImage() {
+      const content = document.getElementById("postContent");
+      html2canvas(content, {
+        backgroundColor: null,
+        scale: 3 // biar HD
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "post.png";
+        link.href = canvas.toDataURL("image/png", 1.0);
+        link.click();
+      });
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
