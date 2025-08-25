@@ -248,4 +248,108 @@
     .btn-primary, .btn-ghost {
       border: none; cursor: pointer;
       padding: 12px 22px; border-radius: 28px;
-      font-w
+      font-weight: 600; letter-spacing: .2px;
+      transition: transform .2s ease, background .2s ease, opacity .2s ease;
+    }
+    .btn-primary {
+      background: #ff5fa2; color: #fff;
+      box-shadow: 0 8px 20px rgba(255,95,162,.35);
+    }
+    .btn-primary:hover { transform: translateY(-1px) scale(1.03); background: #ff85c2; }
+    .btn-ghost {
+      background: rgba(255,255,255,.18); color: #fff; border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover { transform: translateY(-1px) scale(1.03); opacity: .95; }
+
+    /* Responsive tweak */
+    @media (max-width: 420px){
+      .stage { width: 300px; height: 280px; }
+      .panda { transform: scale(.9); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background canvas tetap mengikuti konsep -->
+  <canvas id="background" aria-hidden="true"></canvas>
+
+  <section class="welcome">
+    <div class="card" aria-live="polite">
+      <h1 class="title">Welcome to the Secret Space</h1>
+
+      <div class="stage">
+        <!-- Floating dots decoration -->
+        <div class="float">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+
+        <!-- Panda character -->
+        <div class="panda" role="img" aria-label="Cute panda waving hello">
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+
+          <div class="head"></div>
+
+          <div class="patch left"></div>
+          <div class="patch right"></div>
+
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+
+          <div class="nose"></div>
+          <div class="mouth"></div>
+
+          <div class="blush left"></div>
+          <div class="blush right"></div>
+
+          <div class="arm left"></div>
+          <div class="arm right"></div>
+
+          <div class="bubble" id="bubble">Hi 👋</div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <!-- ganti href sesuai alurmu -->
+        <a class="btn-primary" href="folder1.html" id="enterBtn">Enter Archive</a>
+        <button class="btn-ghost" id="toggleWave">Make it wave!</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Optional: efek typewriter ringan di bubble (tanpa lib)
+    (function typeBubble(){
+      const el = document.getElementById('bubble');
+      const text = "Hi, welcome ✨";
+      let i = 0;
+      el.textContent = "";
+      const tick = () => {
+        el.textContent = text.slice(0, i++);
+        if (i <= text.length) requestAnimationFrame(tick);
+      };
+      setTimeout(()=>requestAnimationFrame(tick), 300);
+    })();
+
+    // Tombol untuk memicu lambaian ekstra
+    (function waveBoost(){
+      const btn = document.getElementById('toggleWave');
+      const arm = document.querySelector('.arm.right');
+      let boosted = false;
+      btn.addEventListener('click', () => {
+        boosted = !boosted;
+        arm.style.animation = boosted ? 'wave .9s ease-in-out infinite' : '';
+        btn.textContent = boosted ? 'Okay stop 🙂' : 'Make it wave!';
+      });
+    })();
+
+    // Opsional: auto-redirect setelah beberapa detik (komentari kalau tidak perlu)
+    // setTimeout(()=> document.getElementById('enterBtn').click(), 3500);
+  </script>
+
+  <!-- partikel & animasi latar dari script.js kamu tetap berjalan -->
+  <script src="script.js"></script>
+</body>
+</html>
