@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome — DX Atelier Δ</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ====== LAYOUT & CONTAINER ====== */
+    .welcome {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 2;
+      padding: 80px 24px;
+      color: #fff;
+    }
+    .card {
+      width: min(720px, 92vw);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      padding: 28px 24px 32px;
+      display: grid;
+      gap: 20px;
+      justify-items: center;
+      animation: pop 700ms ease-out both;
+    }
+    .title {
+      font-size: clamp(1.4rem, 1rem + 1.6vw, 2rem);
+      letter-spacing: .3px;
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+    }
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(24px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ====== PANDA CHARACTER (PURE CSS) ====== */
+    .stage {
+      position: relative;
+      width: 360px;
+      height: 320px;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      isolation: isolate;
+    }
+    .panda {
+      position: relative;
+      width: 260px;
+      height: 220px;
+      transform-origin: bottom center;
+      animation: floaty 3.2s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.25));
+    }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Ears */
+    .ear {
+      position: absolute;
+      top: -10px;
+      width: 78px; height: 78px;
+      background: #2b2b2b;
+      border-radius: 50%;
+      z-index: 0;
+      animation: eartwitch 4s ease-in-out infinite;
+    }
+    .ear.left  { left: 18px; }
+    .ear.right { right: 18px; animation-delay: .6s; }
+    @keyframes eartwitch {
+      0%,100% { transform: rotate(0deg) }
+      50% { transform: rotate(-6deg) }
+    }
+
+    /* Head */
+    .head {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 260px; height: 220px;
+      background: #f7f7f7;
+      border-radius: 120px 120px 100px 100px / 120px 120px 90px 90px;
+      z-index: 1;
+    }
+
+    /* Eye patches */
+    .patch {
+      position: absolute; top: 76px;
+      width: 86px; height: 70px;
+      background: #2b2b2b;
+      border-radius: 50% 50% 45% 45%;
+      transform: rotate(12deg);
+      filter: brightness(.95);
+    }
+    .patch.right { right: 42px; transform: rotate(-12deg); }
+    .patch.left  { left: 42px; }
+
+    /* Eyes */
+    .eye {
+      position: absolute; top: 100px;
+      width: 22px; height: 22px;
+      background: #111;
+      border-radius: 50%;
+      z-index: 2;
+      animation: blink 4.5s ease-in-out infinite;
+    }
+    .eye.left  { left: 92px; }
+    .eye.right { right: 92px; }
+    .eye::after {
+      content: "";
+      position: absolute; top: 4px; left: 6px;
+      width: 6px; height: 6px;
+      background: #fff; border-radius: 50%;
+      opacity: .9;
+    }
+    @keyframes blink {
+      0%, 4%, 8%, 100% { transform: scaleY(1); }
+      5%, 7% { transform: scaleY(0.1); }
+    }
+
+    /* Nose & mouth */
+    .nose {
+      position: absolute; top: 128px; left: 50%;
+      transform: translateX(-50%);
+      width: 26px; height: 18px;
+      background: #222;
+      border-radius: 16px 16px 18px 18px;
+    }
+    .mouth {
+      position: absolute; top: 148px; left: 50%;
+      width: 52px; height: 30px;
+      transform: translateX(-50%);
+    }
+    .mouth::before, .mouth::after {
+      content: "";
+      position: absolute; top: 0;
+      width: 26px; height: 26px;
+      border: 3px solid #222;
+      border-top: transparent;
+      border-left: transparent;
+      border-radius: 0 0 26px 0;
+    }
+    .mouth::before { left: 0; transform: rotate(45deg); }
+    .mouth::after  { right: 0; transform: rotate(-45deg); }
+
+    /* Blush */
+    .blush {
+      position: absolute; top: 140px;
+      width: 40px; height: 16px;
+      background: radial-gradient(ellipse at center, rgba(255,96,150,.55), rgba(255,96,150,0));
+      filter: blur(1px);
+    }
+    .blush.left  { left: 46px; }
+    .blush.right { right: 46px; }
+
+    /* Arms */
+    .arm {
+      position: absolute; bottom: 12px;
+      width: 70px; height: 70px;
+      background: #2b2b2b;
+      border-radius: 60px;
+      z-index: 2;
+    }
+    .arm.left  { left: 34px; transform: rotate(12deg); }
+    .arm.right { right: 34px; transform-origin: top left; animation: wave 1.6s ease-in-out infinite; }
+    @keyframes wave {
+      0%,100% { transform: rotate(-10deg) translateY(0); }
+      50%     { transform: rotate(-28deg) translateY(-2px); }
+    }
+
+    /* Speech bubble */
+    .bubble {
+      position: absolute;
+      top: -18px; right: -10px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: .95rem;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+      transform-origin: right bottom;
+      animation: pop 600ms ease-out both;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute; bottom: -7px; right: 14px;
+      width: 12px; height: 12px; transform: rotate(45deg);
+      background: inherit; border-right: inherit; border-bottom: inherit;
+      backdrop-filter: inherit;
+    }
+
+    /* Ground shadow ellipse */
+    .shadow {
+      position: absolute; bottom: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 180px; height: 28px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.28), rgba(0,0,0,0));
+      filter: blur(6px);
+      z-index: 0;
+      animation: shadowPulse 3.2s ease-in-out infinite;
+    }
+    @keyframes shadowPulse {
+      0%,100% { transform: translateX(-50%) scaleX(1); opacity: .8; }
+      50% { transform: translateX(-50%) scaleX(1.06); opacity: .65; }
+    }
+
+    /* Floating bubbles (decor) — pure CSS */
+    .float {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .dot {
+      --x: 10%;
+      --d: 6s;
+      position: absolute;
+      left: var(--x);
+      bottom: -20px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      filter: blur(.2px);
+      animation: rise var(--d) linear infinite;
+    }
+    .dot:nth-child(2){ --x: 25%; --d: 7.2s; width: 8px; height: 8px; }
+    .dot:nth-child(3){ --x: 40%; --d: 5.8s; width: 12px; height: 12px; }
+    .dot:nth-child(4){ --x: 60%; --d: 7.8s; width: 9px; height: 9px; }
+    .dot:nth-child(5){ --x: 78%; --d: 6.4s; width: 11px; height: 11px; }
+    .dot:nth-child(6){ --x: 88%; --d: 8s; width: 7px; height: 7px; }
+    @keyframes rise {
+      0%   { transform: translateY(0) scale(.9); opacity: .0; }
+      8%   { opacity: .55; }
+      100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin-top: 4px;
+    }
+    .btn-primary, .btn-ghost {
+      border: none; cursor: pointer;
+      padding: 12px 22px; border-radius: 28px;
+      font-w
