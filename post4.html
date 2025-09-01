@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dxatelier.io - Opening</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      color: #00fff7;
+    }
+
+    /* Futuristic moving grid */
+    .grid {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background-image: 
+        linear-gradient(#00fff733 1px, transparent 1px),
+        linear-gradient(90deg, #00fff733 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: moveGrid 10s linear infinite;
+      z-index: 0;
+    }
+    @keyframes moveGrid {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-40px, -40px); }
+    }
+
+    /* Intro text */
+    .intro {
+      font-size: 1.5rem;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00fff7;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+      z-index: 2;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 18ch; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Brand name at the end */
+    .brand {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.2rem;
+      color: #fff;
+      opacity: 0;
+      text-shadow: 0 0 5px #0ff, 0 0 15px #0ff;
+      animation: showBrand 1s ease forwards 4s, glitch 1s infinite 5s;
+    }
+    @keyframes showBrand {
+      to { opacity: 1; }
+    }
+
+    /* glitch effect */
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px -2px red, 2px 2px blue; }
+      40% { text-shadow: 2px 2px red, -2px -2px blue; }
+      60% { text-shadow: -2px 2px red, 2px -2px blue; }
+      100% { text-shadow: 2px 0 red, -2px 0 blue; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="intro">Welcome to the future...</div>
+  <div class="brand">© dxatelier.io</div>
+</body>
+</html>
