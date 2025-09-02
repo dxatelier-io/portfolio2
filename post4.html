@@ -1,86 +1,460 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>dxatelier.io - Opening</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Courier New', monospace;
-      color: #00fff7;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Réunion — Delta Ivy (Présentatrice)</title>
+<style>
+  :root{
+    --bg:#08101a;
+    --panel:#0f1720;
+    --accent:#06b6d4;
+    --accent-2:#8b5cf6;
+    --glass: rgba(255,255,255,0.04);
+    --muted:#9aa6b2;
+    --text:#e6f7fb;
+    --danger:#ef4444;
+    --ok:#22c55e;
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#02111a 0%, #041824 100%); color:var(--text); -webkit-font-smoothing:antialiased}
+  /* Layout */
+  .app {
+    height:100vh;
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:18px;
+    padding:20px;
+    align-items:stretch;
+  }
 
-    /* Futuristic moving grid */
-    .grid {
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background-image: 
-        linear-gradient(#00fff733 1px, transparent 1px),
-        linear-gradient(90deg, #00fff733 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: moveGrid 10s linear infinite;
-      z-index: 0;
-    }
-    @keyframes moveGrid {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-40px, -40px); }
-    }
+  /* LEFT: Meeting area */
+  .meeting-area{
+    display:grid;
+    grid-template-rows: auto 1fr auto;
+    gap:12px;
+  }
 
-    /* Intro text */
-    .intro {
-      font-size: 1.5rem;
-      color: #00fff7;
-      text-shadow: 0 0 10px #00fff7;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #00fff7;
-      width: 0;
-      animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
-      z-index: 2;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 24ch; }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
+  header.meet-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 16px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(4px);
+  }
+  header.meet-head .left{
+    display:flex; gap:12px; align-items:center;
+  }
+  .meeting-title{font-weight:700}
+  .meeting-sub{color:var(--muted); font-size:13px}
 
-    /* Brand name at the end */
-    .brand {
-      position: absolute;
-      bottom: 30px;
-      font-size: 1.2rem;
-      color: #fff;
-      opacity: 0;
-      text-shadow: 0 0 5px #0ff, 0 0 15px #0ff;
-      animation: showBrand 1s ease forwards 4s, glitch 1s infinite 5s;
-    }
-    @keyframes showBrand {
-      to { opacity: 1; }
-    }
+  /* Grid participants */
+  .stage{
+    display:grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap:12px;
+    align-items:stretch;
+  }
 
-    /* glitch effect */
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 red, -2px 0 blue; }
-      20% { text-shadow: -2px -2px red, 2px 2px blue; }
-      40% { text-shadow: 2px 2px red, -2px -2px blue; }
-      60% { text-shadow: -2px 2px red, 2px -2px blue; }
-      100% { text-shadow: 2px 0 red, -2px 0 blue; }
-    }
-  </style>
+  .spotlight{
+    background:linear-gradient(180deg, rgba(139,92,246,0.08), rgba(6,182,212,0.03));
+    border-radius:14px;
+    padding:18px;
+    position:relative;
+    border:1px solid rgba(255,255,255,0.04);
+    overflow:hidden;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+
+  .presenter-video{
+    width:54%;
+    height:320px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#02293b,#013a4f);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    box-shadow: 0 12px 40px rgba(6,182,212,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+  .presenter-badge{
+    position:absolute;
+    top:12px; left:12px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:13px;
+    color:#021018;
+    box-shadow:0 6px 18px rgba(139,92,246,0.12);
+  }
+  .presenter-meta{
+    padding:6px 8px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.03);
+    color:var(--muted);
+    font-size:13px;
+    position:absolute; right:12px; top:12px;
+  }
+
+  /* presenter avatar mock */
+  .presenter-face{
+    width:160px; height:160px;
+    border-radius:18px;
+    background: linear-gradient(180deg,#ffe0bd,#ffd1b3);
+    border:4px solid rgba(255,255,255,0.04);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .presenter-hair{
+    width:110px; height:60px; background:#3b2f5a; border-radius:60px 60px 40px 40px; position:absolute; top:10px;
+  }
+  .presenter-eyes{display:flex; gap:12px; margin-top:45px}
+  .eye{width:14px; height:14px; background:#071827; border-radius:50%}
+  .presenter-smile{width:40px; height:16px; border-radius:0 0 20px 20px; background:#f7c9b1; position:absolute; bottom:26px}
+
+  /* right column inside stage: clients */
+  .clients{
+    display:flex; flex-direction:column; gap:10px; align-items:stretch;
+  }
+  .client-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.04);
+    display:flex; gap:12px; align-items:center; position:relative;
+  }
+  .avatar {
+    width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:white;
+    background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+    flex-shrink:0;
+    box-shadow:0 8px 24px rgba(8,20,30,0.6);
+  }
+  .client-info{flex:1}
+  .client-name{font-weight:700}
+  .client-role{color:var(--muted); font-size:13px}
+  .speaking-dot{width:10px; height:10px; border-radius:50%; background:transparent; box-shadow:0 0 12px rgba(0,0,0,0.2); position:absolute; right:12px; top:12px}
+  .speaking-dot.active{background:var(--accent); box-shadow:0 0 18px var(--accent); animation:voice 1s infinite}
+
+  @keyframes voice {
+    0%{ transform:scale(1); opacity:1 }
+    50%{ transform:scale(1.4); opacity:0.7 }
+    100%{ transform:scale(1); opacity:1 }
+  }
+
+  /* bottom controls */
+  .controls{
+    display:flex; gap:12px; justify-content:center; align-items:center; padding:12px 8px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border-radius:12px; border:1px solid rgba(255,255,255,0.03);
+  }
+  .control-btn{
+    background:var(--glass); border:1px solid rgba(255,255,255,0.04); color:var(--text);
+    padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:700; display:inline-flex; gap:8px; align-items:center;
+  }
+  .control-btn.toggled{ background:linear-gradient(90deg, rgba(139,92,246,0.12), rgba(6,182,212,0.06)); border-color:transparent }
+
+  /* RIGHT: chat area */
+  .chat-area{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px; border:1px solid rgba(255,255,255,0.04); padding:14px; display:flex; flex-direction:column; gap:10px;
+  }
+  .chat-header{display:flex; justify-content:space-between; align-items:center;}
+  .chat-title{font-weight:800}
+  .chat-sub{color:var(--muted); font-size:13px}
+  .messages{
+    flex:1; overflow:auto; padding:8px; display:flex; flex-direction:column; gap:8px;
+    scrollbar-width:thin;
+  }
+  .msg{
+    max-width:86%; padding:10px 12px; border-radius:10px; font-size:14px; line-height:1.3;
+    box-shadow:0 6px 18px rgba(2,8,14,0.6);
+  }
+  .msg.me{ align-self:flex-end; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#021018; }
+  .msg.them{ align-self:flex-start; background:rgba(255,255,255,0.03); color:var(--text); border:1px solid rgba(255,255,255,0.02) }
+  .msg .meta{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
+  .chat-input{display:flex; gap:8px; align-items:center}
+  .chat-input input{flex:1; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text)}
+  .send-btn{padding:10px 12px; border-radius:10px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; color:#021018; cursor:pointer; font-weight:700}
+
+  /* small utilities */
+  .pill{background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:999px; color:var(--muted); font-size:13px}
+  .clock{font-weight:700; color:var(--muted)}
+
+  /* responsive */
+  @media (max-width:1000px){
+    .app{ grid-template-columns: 1fr; grid-template-rows: 1fr 360px; padding:12px; }
+    .chat-area{ order:2 }
+  }
+</style>
 </head>
 <body>
-  <div class="grid"></div>
-  <div class="intro">Welcome to the future...</div>
-  <div class="brand">© dxatelier.io</div>
+  <div class="app" role="application" aria-label="Simulateur de réunion en ligne">
+    <!-- LEFT -->
+    <div class="meeting-area" aria-live="polite">
+      <header class="meet-head">
+        <div class="left">
+          <div style="display:flex; flex-direction:column;">
+            <span class="meeting-title">Réunion projet — Revue sprint</span>
+            <span class="meeting-sub">Delta Ivy (Présentatrice) • Client: Charlotte, Julien, Amélie</span>
+          </div>
+        </div>
+        <div class="right" style="display:flex; gap:12px; align-items:center;">
+          <div class="pill" id="statusPill">En direct</div>
+          <div class="clock" id="clock">00:00:00</div>
+        </div>
+      </header>
+
+      <section class="stage" aria-label="Zone de participants">
+        <!-- Spotlight presenter -->
+        <div class="spotlight" id="presenterSpot">
+          <div class="presenter-video" aria-hidden="true">
+            <div class="presenter-face" title="Delta Ivy">
+              <div class="presenter-hair" aria-hidden="true"></div>
+              <div class="presenter-eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="presenter-smile" aria-hidden="true"></div>
+            </div>
+            <div style="position:absolute; left:16px; bottom:16px; color:var(--muted); font-size:13px;">
+              Delta Ivy — Présentation
+            </div>
+            <div class="presenter-badge">Présentatrice</div>
+            <div class="presenter-meta">Réunion • 14:30 • Paris</div>
+          </div>
+
+          <div style="flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center;">
+            <div style="display:flex; gap:10px; align-items:center;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 6px 18px var(--ok)"></div>
+              <div style="font-weight:700">Partage d'écran</div>
+            </div>
+            <div style="color:var(--muted)">Présentation: Roadmap technique, livrables & deadlines</div>
+
+            <!-- small timeline / bullets -->
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <div class="pill">Sprint 5</div>
+              <div class="pill">API v2</div>
+              <div class="pill">Tests E2E</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clients column -->
+        <div class="clients" role="list" aria-label="Participants">
+          <div class="client-card" id="client-charlotte" role="listitem" title="Charlotte">
+            <div class="avatar" aria-hidden="true">C</div>
+            <div class="client-info">
+              <div class="client-name">Charlotte</div>
+              <div class="client-role">Product Owner — Client</div>
+            </div>
+            <div class="speaking-dot" id="dot-charlotte" aria-hidden="true"></div>
+          </div>
+
+          <div class="client-card" id="client-julien" role="listitem" title="Julien">
+            <div class="avatar" aria-hidden="true">J</div>
+            <div class="client-info">
+              <div class="client-name">Julien</div>
+              <div class="client-role">Lead Dev — Client</div>
+            </div>
+            <div class="speaking-dot" id="dot-julien" aria-hidden="true"></div>
+          </div>
+
+          <div class="client-card" id="client-amelie" role="listitem" title="Amélie">
+            <div class="avatar" aria-hidden="true">A</div>
+            <div class="client-info">
+              <div class="client-name">Amélie</div>
+              <div class="client-role">Designer — Client</div>
+            </div>
+            <div class="speaking-dot" id="dot-amelie" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="controls" role="toolbar" aria-label="Contrôles de réunion">
+          <button class="control-btn" id="muteBtn" aria-pressed="false">🎤 Micro</button>
+          <button class="control-btn" id="camBtn" aria-pressed="true">📷 Caméra</button>
+          <button class="control-btn" id="shareBtn" aria-pressed="false">🖥️ Partager écran</button>
+          <button class="control-btn" id="raiseBtn" aria-pressed="false">✋ Lever la main</button>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="control-btn" id="endBtn" style="background:linear-gradient(90deg,var(--danger),#cc2b2b);">❌ Quitter</button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- RIGHT: chat -->
+    <aside class="chat-area" aria-label="Chat de réunion">
+      <div class="chat-header">
+        <div>
+          <div class="chat-title">Chat — Réunion</div>
+          <div class="chat-sub">Discussion projet • Dev web</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <div class="pill" id="unreadPill">3 nouveaux</div>
+        </div>
+      </div>
+
+      <div class="messages" id="messages" aria-live="polite" role="log">
+        <!-- messages initiales (en français) -->
+        <div class="msg them">
+          <span class="meta">Charlotte • 14:31</span>
+          Bonjour Delta — pouvez-vous confirmer les endpoints pour l'intégration CRM ?
+        </div>
+
+        <div class="msg them">
+          <span class="meta">Julien • 14:32</span>
+          Nous avons une question sur la pagination API (page size / cursors).
+        </div>
+
+        <div class="msg them">
+          <span class="meta">Amélie • 14:33</span>
+          Pour le design, j'ai uploadé la maquette Figma — je propose une petite marge de décalage pour mobile.
+        </div>
+
+        <div class="msg me" id="intro-msg">
+          <span class="meta">Delta Ivy • maintenant</span>
+          Merci à tous — je passe la parole à Julien pour le point technique.
+        </div>
+      </div>
+
+      <form id="chatForm" class="chat-input" onsubmit="return false;" aria-label="Envoyer un message">
+        <input id="chatInput" placeholder="Écrire un message en français..." aria-label="Message" />
+        <button id="sendBtn" class="send-btn">Envoyer</button>
+      </form>
+    </aside>
+  </div>
+
+<script>
+  // Simple clock / timer (hh:mm:ss)
+  function pad(n){return String(n).padStart(2,'0')}
+  const clockEl = document.getElementById('clock');
+  let start = Date.now();
+  function tick(){
+    const d = new Date(Date.now());
+    clockEl.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+  }
+  tick(); setInterval(tick,1000);
+
+  // Controls toggles
+  const muteBtn = document.getElementById('muteBtn');
+  const camBtn = document.getElementById('camBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const raiseBtn = document.getElementById('raiseBtn');
+  const endBtn = document.getElementById('endBtn');
+
+  muteBtn.addEventListener('click', ()=> {
+    const on = muteBtn.classList.toggle('toggled');
+    muteBtn.setAttribute('aria-pressed', on);
+    muteBtn.textContent = on ? '🔇 Muet' : '🎤 Micro';
+  });
+  camBtn.addEventListener('click', ()=> {
+    const on = camBtn.classList.toggle('toggled');
+    camBtn.setAttribute('aria-pressed', on);
+    camBtn.textContent = on ? '📷 Caméra' : '📷 Caméra (off)';
+  });
+  shareBtn.addEventListener('click', ()=> {
+    const on = shareBtn.classList.toggle('toggled');
+    shareBtn.setAttribute('aria-pressed', on);
+    shareBtn.textContent = on ? '🖥️ Partagé' : '🖥️ Partager écran';
+  });
+  raiseBtn.addEventListener('click', ()=> {
+    const on = raiseBtn.classList.toggle('toggled');
+    raiseBtn.setAttribute('aria-pressed', on);
+    raiseBtn.textContent = on ? '✋ Levée' : '✋ Lever la main';
+  });
+  endBtn.addEventListener('click', ()=> {
+    if(confirm('Quitter la réunion ?')) {
+      // visual feedback
+      document.body.innerHTML = '<div style=\"display:flex;align-items:center;justify-content:center;height:100vh;background:#061018;color:#fff;font-size:20px;\">Vous avez quitté la réunion — Merci, Delta Ivy.</div>';
+    }
+  });
+
+  // Chat send
+  const messagesEl = document.getElementById('messages');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+
+  function addMessage(who, text, timeLabel){
+    const div = document.createElement('div');
+    div.className = who === 'me' ? 'msg me' : 'msg them';
+    const time = timeLabel || (new Date()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    div.innerHTML = '<span class="meta">'+ (who==='me' ? 'Delta Ivy' : who) +' • '+ time +'</span>' + '<div>'+ escapeHtml(text) +'</div>';
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  sendBtn.addEventListener('click', ()=>{
+    const val = chatInput.value.trim();
+    if(!val) return;
+    addMessage('me', val, 'maintenant');
+    chatInput.value = '';
+  });
+
+  chatInput.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){ e.preventDefault(); sendBtn.click(); }
+  });
+
+  // Small simulation: clients send messages periodically (French)
+  const clientMsgs = [
+    {who:'Charlotte', text:"Pouvez-vous confirmer le format JSON pour le webhook ?"},
+    {who:'Julien', text:"J'ai déployé une branche sur staging pour test."},
+    {who:'Amélie', text:"Je propose qu'on valide la palette couleur avant livraison."},
+    {who:'Charlotte', text:"Quel est le délai pour l'API d'authentification ?"},
+  ];
+  let idx = 0;
+  function simulateClient(){
+    if(idx >= clientMsgs.length) return;
+    const m = clientMsgs[idx++];
+    setTimeout(()=> {
+      addMessage(m.who, m.text);
+      // light up speaking dot
+      const dot = document.getElementById('dot-'+m.who.toLowerCase());
+      if(dot){
+        dot.classList.add('active');
+        setTimeout(()=> dot.classList.remove('active'), 1800);
+      }
+      // mark unread if chat area not focused
+      const unread = document.getElementById('unreadPill');
+      unread.textContent = (parseInt(unread.textContent) || 0) + 1 + ' nouveaux';
+      simulateClient();
+    }, 4500 * (Math.random()*0.8 + 0.8)); // spaced
+  }
+  simulateClient();
+
+  // helper escape
+  function escapeHtml(unsafe) {
+    return unsafe
+     .replace(/&/g, "&amp;")
+     .replace(/</g, "&lt;")
+     .replace(/>/g, "&gt;")
+     .replace(/\"/g, "&quot;")
+     .replace(/'/g, "&#039;");
+  }
+
+  // accessibility: focus input on load
+  window.addEventListener('load', ()=> chatInput.focus());
+
+  // mark unread reset when focus chat
+  messagesEl.addEventListener('mouseenter', ()=>{
+    document.getElementById('unreadPill').textContent = '0 nouveaux';
+  });
+
+  // small keyboard shortcuts
+  document.addEventListener('keydown', (e)=>{
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==='m'){ muteBtn.click(); }
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==='k'){ camBtn.click(); }
+  });
+
+  // Set presenter's label to Delta Ivy explicitly (in case)
+  document.querySelector('.presenter-badge').textContent = 'Delta Ivy';
+  // Update intro message name
+  const intro = document.getElementById('intro-msg');
+  if(intro) intro.innerHTML = '<span class="meta">Delta Ivy • maintenant</span><div>Merci à tous — je passe la parole à Julien pour le point technique.</div>';
+</script>
 </body>
 </html>
