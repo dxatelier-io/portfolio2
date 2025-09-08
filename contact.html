@@ -6,6 +6,7 @@
   <title>Contact | DX Atelier Δ</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <header>
@@ -19,7 +20,6 @@
       <a href="contact.html" class="active">Contact</a>
     </nav>
 
-    <!-- Language Switcher -->
     <div class="lang-switch">
       <select id="language">
         <option value="en">🇬🇧 EN</option>
@@ -29,31 +29,44 @@
     </div>
   </header>
 
-  <section class="contact-section">
-    <h1 data-i18n="contact_title">Get in Touch</h1>
-    <p data-i18n="contact_subtitle">We’d love to hear from you — collaboration, questions, or ideas.</p>
+  <!-- Hero -->
+  <section class="contact-hero">
+    <h1>Let’s Connect</h1>
+    <p>Collaboration, questions, or ideas — I’d love to hear from you.</p>
+  </section>
 
-    <div class="contact-cards">
-      <div class="card">
-        <h2 data-i18n="whatsapp_title">WhatsApp</h2>
-        <p>+62 813-8745-7611</p>
-      </div>
-      <div class="card">
-        <h2 data-i18n="email_title">Email</h2>
-        <p>dxatelier.io@gmail.com</p>
-      </div>
-      <div class="card">
-        <h2 data-i18n="call_title">International Call</h2>
-        <p>+1 239-266-3757</p>
-      </div>
+  <!-- Contact Methods -->
+  <section class="contact-methods">
+    <div class="card">
+      <i class="fab fa-whatsapp"></i>
+      <h2>WhatsApp</h2>
+      <p><a href="https://wa.me/6281387457611" target="_blank">+62 813-8745-7611</a></p>
     </div>
+    <div class="card">
+      <i class="fas fa-envelope"></i>
+      <h2>Email</h2>
+      <p><a href="mailto:dxatelier.io@gmail.com">dxatelier.io@gmail.com</a></p>
+    </div>
+    <div class="card">
+      <i class="fas fa-phone"></i>
+      <h2>International Call</h2>
+      <p>+1 239-266-3757</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-form">
+    <h2>Send a Message</h2>
+    <form action="mailto:dxatelier.io@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
   </section>
 
   <footer>
     <p>© 2025 DX Atelier Δ — All Rights Reserved</p>
   </footer>
-
-  <script src="script.js"></script>
-  <script src="contact.js"></script>
 </body>
 </html>
