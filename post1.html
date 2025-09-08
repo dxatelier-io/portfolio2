@@ -3,117 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post 1</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Digital Paper Poem</title>
   <style>
     body {
       margin: 0;
-      overflow-x: hidden;
-    }
-
-    #captureArea {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 50px;
-      position: relative;
-      z-index: 1;
+      background: #eaeaea;
+      font-family: 'Georgia', serif;
     }
 
-    .post-content {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
+    .paper {
+      background: #fffef9;
+      width: 600px;
+      max-width: 90%;
       padding: 40px;
-      border-radius: 20px;
-      max-width: 700px;
-      line-height: 1.8;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .poem {
       font-size: 1.2rem;
+      line-height: 1.8;
+      color: #333;
+      white-space: pre-line;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .save-btn {
+      margin-top: 20px;
+      background: #333;
       color: white;
-    }
-
-    .save-btns {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 10;
-    }
-
-    .save-btns button {
-      padding: 12px 25px;
       border: none;
-      border-radius: 25px;
-      background: #ff5fa2;
-      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s;
+      font-size: 0.9rem;
+      transition: background 0.3s;
     }
 
-    .save-btns button:hover {
-      background: #ff85c2;
-      transform: scale(1.05);
-    }
-
-    #background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    .save-btn:hover {
+      background: #555;
     }
   </style>
 </head>
 <body>
-  <canvas id="background"></canvas>
+  <div id="capture" class="paper">
+    <div class="poem">
+      Even in the warmth of another’s arms,
+      I find myself searching for your silhouette
+      in the flicker of her shadow.
 
-  <div id="captureArea">
-    <div id="postContent" class="post-content">
-      <h2>My Untold Feelings</h2>
-      <p>
-        Even in silence, my heart keeps writing your name in places where no one will ever look.
-      </p>
+      her laughter fills the air,
+      yet my heart keeps bending
+      toward the sound of your voice.
+
+      I trace her face, but it’s blurred—
+      as if my soul refuses to remember
+      anyone who isn’t you.
+
+      And so it feels less like loving them,
+      and more like wishing you had stayed.
     </div>
+    <div class="copyright">© dxatelier.io</div>
   </div>
 
-  <div class="save-btns">
-    <button onclick="saveAsImage('full')">💾 Save Full Page</button>
-    <button onclick="saveAsImage('text')">📝 Save Text Only</button>
-  </div>
+  <button class="save-btn" onclick="saveAsImage()">Save as JPEG</button>
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    function saveAsImage(mode) {
-      let target;
-      let filename;
-
-      if (mode === 'full') {
-        target = document.getElementById("captureArea");
-        filename = "post-full.png";
-      } else {
-        target = document.getElementById("postContent");
-        filename = "post-text.png";
-      }
-
-      html2canvas(target, {
-        backgroundColor: null,
-        scale: 3 // HD
-      }).then(canvas => {
+    function saveAsImage() {
+      const capture = document.getElementById("capture");
+      html2canvas(capture, {scale: 3, backgroundColor: '#fffef9'}).then(canvas => {
         const link = document.createElement("a");
-        link.download = filename;
-        link.href = canvas.toDataURL("image/png", 1.0);
+        link.download = "poem_dxatelier.jpeg";
+        link.href = canvas.toDataURL("image/jpeg", 1.0);
         link.click();
-      }).catch(err => {
-        console.error("Error saving image:", err);
       });
     }
   </script>
-
-  <script src="script.js"></script>
 </body>
 </html>
