@@ -1,30 +1,19 @@
-const statusButtons = document.querySelectorAll('[data-status]');
-const categoryButtons = document.querySelectorAll('[data-category]');
+const filterButtons = document.querySelectorAll('.filters button');
 const books = document.querySelectorAll('.book-card');
 
-let selectedStatus = 'all';
-let selectedCategory = 'all';
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.textContent.toLowerCase().replace(" ", "-");
 
-statusButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    selectedStatus = btn.getAttribute('data-status');
-    filterBooks();
+    books.forEach(book => {
+      if (filter === "all" || book.dataset.category === filter) {
+        book.style.display = "block";
+      } else {
+        book.style.display = "none";
+      }
+    });
+
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
   });
 });
-
-categoryButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    selectedCategory = btn.getAttribute('data-category');
-    filterBooks();
-  });
-});
-
-function filterBooks() {
-  books.forEach(book => {
-    const status = book.getAttribute('data-status');
-    const category = book.getAttribute('data-category');
-    const matchStatus = (selectedStatus === 'all' || status === selectedStatus);
-    const matchCategory = (selectedCategory === 'all' || category === selectedCategory);
-    book.style.display = matchStatus && matchCategory ? 'block' : 'none';
-  });
-}
