@@ -4,103 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About | DX Atelier Δ</title>
-  <link rel="stylesheet" href="style.css"/>
   <style>
+    /* Global */
     body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #e0e0e0;
-      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+    }
+
+    /* Header */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(20,20,30,.65);
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      margin: 1rem auto;
+      max-width: 1100px;
+      backdrop-filter: blur(8px);
+    }
+    .brand-mark {
+      display: flex; align-items: center; gap: .6rem;
+      font-weight: 700; letter-spacing: .5px; color: #f5f5f5;
+    }
+    .brand-logo {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: conic-gradient(from 210deg, #d4af37, #c084fc, #6ad0ff, #d4af37);
+      display: grid; place-items: center; font-weight: 800; color: #fff;
+      box-shadow: 0 10px 30px rgba(212,175,55,.35);
+      animation: spinPulse 4.5s ease-in-out infinite;
+    }
+    @keyframes spinPulse {
+      0%,100%{transform:rotate(0) scale(1)}
+      50%{transform:rotate(6deg) scale(1.06)}
+    }
+    nav a {
+      margin: 0 .6rem; text-decoration: none; color: #f0f0f0; font-weight: 500;
+      transition: color .3s;
+    }
+    nav a:hover { color: #d4af37; }
+    .lang-switch select {
+      padding: .35rem .65rem; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: #1c1c24; color: #f0f0f0;
     }
 
     /* Hero */
     .about-hero {
-      position:relative;
-      padding:6rem 1.5rem;
-      text-align:center;
-      overflow:hidden;
+      position: relative;
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      overflow: hidden;
       background: radial-gradient(1200px 600px at 50% -10%, rgba(212,175,55,.15), transparent),
                   radial-gradient(1000px 400px at 10% 110%, rgba(192,132,252,.12), transparent),
                   radial-gradient(800px 300px at 90% 110%, rgba(135,206,250,.1), transparent);
     }
-    .brand-mark {
-      display:inline-flex; align-items:center; gap:.6rem; margin-bottom:1rem;
-      font-weight:700; letter-spacing:.5px; color:#f5f5f5;
-    }
-    .brand-logo {
-      width:42px; height:42px; border-radius:50%;
-      background: conic-gradient(from 210deg, #d4af37, #c084fc, #6ad0ff, #d4af37);
-      display:grid; place-items:center; color:#fff; font-weight:800;
-      box-shadow:0 10px 30px rgba(212,175,55,.35);
-      animation: spinPulse 4.5s ease-in-out infinite;
-    }
-    @keyframes spinPulse { 
-      0%,100%{transform:rotate(0) scale(1)} 
-      50%{transform:rotate(6deg) scale(1.06)} 
-    }
-    .about-hero h1{ font-size:2.4rem; margin:.3rem 0; }
-    .subtitle{ opacity:.85; max-width:780px; margin:0 auto 1.2rem; }
-
+    .about-hero h1 { font-size: 2.4rem; margin: .3rem 0; }
+    .subtitle { opacity: .85; max-width: 780px; margin: 0 auto 1.2rem; }
     .pill {
-      display:inline-block; padding:.45rem .9rem; border-radius:999px; font-size:.85rem;
-      background: rgba(255,255,255,.1); backdrop-filter: blur(8px);
-      border:1px solid rgba(255,255,255,.15); color:#e0e0e0;
-      margin:.25rem; box-shadow:0 4px 18px rgba(0,0,0,.2);
+      display: inline-block; padding: .45rem .9rem; border-radius: 999px; font-size: .85rem;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: #e0e0e0; margin: .25rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 18px rgba(0,0,0,.2);
     }
 
-    /* Card content */
-    .about-wrap{ max-width:1000px; margin:2rem auto; padding:0 1.2rem; display:grid; gap:1.2rem; }
-    .card{
+    /* Content */
+    .about-wrap {
+      max-width: 1100px; margin: 2rem auto; padding: 0 1.2rem;
+      display: grid; gap: 1.5rem;
+    }
+    .card {
       background: rgba(20,20,30,.65);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:22px; padding:1.3rem 1.2rem;
-      box-shadow:0 10px 30px rgba(0,0,0,.4);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
     }
-    .card h3{ margin-bottom:.4rem; color:#f5f5f5; }
-    .two-col{ display:grid; grid-template-columns:1.2fr .8fr; gap:1rem; }
-    @media (max-width:900px){ .two-col{ grid-template-columns:1fr; } }
+    .card h3 { margin-bottom: .4rem; color: #f5f5f5; }
+    .two-col { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1.2rem; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
 
-    .list{ display:grid; gap:.45rem; margin-top:.4rem; }
-    .list .item{ display:flex; align-items:flex-start; gap:.6rem; }
-    .dot{
-      width:8px; height:8px; margin-top:.42rem; border-radius:50%;
+    .list { display: grid; gap: .45rem; margin-top: .4rem; }
+    .item { display: flex; gap: .6rem; align-items: flex-start; }
+    .dot {
+      width: 8px; height: 8px; margin-top: .42rem; border-radius: 50%;
       background: linear-gradient(45deg,#d4af37,#c084fc);
-      box-shadow:0 0 8px rgba(212,175,55,.6);
+      box-shadow: 0 0 8px rgba(212,175,55,.6);
     }
-
-    .badges{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem; }
-    .badge{
-      padding:.35rem .7rem; border-radius:999px; font-size:.8rem;
+    .badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+    .badge {
+      padding: .35rem .7rem; border-radius: 999px; font-size: .8rem;
       background: linear-gradient(90deg, rgba(212,175,55,.12), rgba(192,132,252,.12));
-      border:1px solid rgba(255,255,255,.12); color:#ddd;
+      border: 1px solid rgba(255,255,255,.12); color: #ddd;
     }
 
     /* CTA */
-    .cta{ text-align:center; margin:1.2rem 0 2.2rem; }
-    .btn-primary{
-      display:inline-block; text-decoration:none; color:#fff; font-weight:600;
-      padding:.9rem 1.2rem; border-radius:16px;
+    .cta { text-align: center; margin: 1.2rem 0 2.2rem; }
+    .btn-primary {
+      display: inline-block; text-decoration: none; color: #fff; font-weight: 600;
+      padding: .9rem 1.2rem; border-radius: 16px;
       background: linear-gradient(45deg,#d4af37,#c084fc);
-      box-shadow:0 10px 24px rgba(0,0,0,.5);
+      box-shadow: 0 10px 24px rgba(0,0,0,.5);
       transition: transform .18s ease;
     }
-    .btn-primary:hover{ transform: translateY(-2px) scale(1.02); }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); }
 
-    /* Header & Footer */
-    header{
-      display:flex; gap:1rem; justify-content:space-between; align-items:center;
-      padding:1rem 1.2rem;
-      background: rgba(20,20,30,.65);
-      border-radius:20px; margin:1rem;
-      backdrop-filter: blur(8px);
+    /* Footer */
+    footer {
+      text-align: center; padding: 1.2rem; opacity: .7; color: #aaa;
+      margin-top: 2rem;
     }
-    nav a{ margin:0 .4rem; text-decoration:none; color:#f0f0f0; font-weight:500; }
-    nav a:hover{ color:#d4af37; }
-    .lang-switch select{
-      padding:.35rem .65rem; border-radius:12px;
-      border:1px solid rgba(255,255,255,.1);
-      background:#1c1c24; color:#f0f0f0;
-    }
-    footer{ text-align:center; padding:1.2rem; opacity:.7; color:#aaa; }
   </style>
 </head>
 <body>
@@ -111,9 +131,9 @@
       <div>DX Atelier Δ</div>
     </div>
     <nav>
-      <a href="index.html" data-i18n="nav_home">Home</a>
-      <a href="about.html" data-i18n="nav_about" aria-current="page">About</a>
-      <a href="booking.html" data-i18n="nav_book">Book</a>
+      <a href="index.html">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="booking.html">Book</a>
     </nav>
     <div class="lang-switch">
       <select id="language">
@@ -130,12 +150,12 @@
       <div class="brand-logo">Δ</div>
       <div>DX Atelier</div>
     </div>
-    <h1 data-i18n="about_title">About DX Atelier</h1>
-    <p class="subtitle" data-i18n="about_tagline">Your Ideas, Our Digital Canvas.</p>
+    <h1>About DX Atelier</h1>
+    <p class="subtitle">Your Ideas, Our Digital Canvas.</p>
     <div>
-      <span class="pill" data-i18n="pill_premium">Premium Quality</span>
-      <span class="pill" data-i18n="pill_friendly">Friendly & Collaborative</span>
-      <span class="pill" data-i18n="pill_modtech">Modern & Techy</span>
+      <span class="pill">Premium Quality</span>
+      <span class="pill">Friendly & Collaborative</span>
+      <span class="pill">Modern & Techy</span>
     </div>
   </section>
 
@@ -143,45 +163,43 @@
   <main class="about-wrap">
     <section class="card two-col">
       <div>
-        <h3 data-i18n="who_we_are_h">Who We Are</h3>
-        <p data-i18n="who_we_are_p">
-          DX Atelier Δ is a boutique studio crafting web experiences, playful mini-games, and thoughtful writing—wrapped in a stylish aesthetic.
-        </p>
+        <h3>Who We Are</h3>
+        <p>DX Atelier Δ is a boutique studio crafting web experiences, playful mini-games, and thoughtful writing—wrapped in a stylish aesthetic.</p>
 
-        <h3 style="margin-top:.9rem" data-i18n="who_we_help_h">Who We Help</h3>
+        <h3 style="margin-top:.9rem">Who We Help</h3>
         <div class="list">
-          <div class="item"><span class="dot"></span><span data-i18n="help_startup">Startups seeking fast, stunning MVPs and brand presence.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="help_umkm">SMEs/UMKM needing reliable, affordable, premium-look websites.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="help_org">Organizations & communities building trust and engagement online.</span></div>
+          <div class="item"><span class="dot"></span><span>Startups seeking fast, stunning MVPs and brand presence.</span></div>
+          <div class="item"><span class="dot"></span><span>SMEs/UMKM needing reliable, affordable, premium-look websites.</span></div>
+          <div class="item"><span class="dot"></span><span>Organizations & communities building trust and engagement online.</span></div>
         </div>
 
         <div class="badges">
-          <span class="badge" data-i18n="badge_speed">Fast Iterations</span>
-          <span class="badge" data-i18n="badge_detail">Attention to Detail</span>
-          <span class="badge" data-i18n="badge_support">After-care Support</span>
+          <span class="badge">Fast Iterations</span>
+          <span class="badge">Attention to Detail</span>
+          <span class="badge">After-care Support</span>
         </div>
       </div>
 
       <div class="card" style="background:rgba(30,30,40,.65)">
-        <h3 data-i18n="what_we_deliver_h">What We Deliver</h3>
+        <h3>What We Deliver</h3>
         <div class="list">
-          <div class="item"><span class="dot"></span><span data-i18n="deliver_web">Responsive, on-brand websites that feel premium.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="deliver_game">Small games/interactive experiments to delight your audience.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="deliver_content">Clear copy & content library that tells your story.</span></div>
+          <div class="item"><span class="dot"></span><span>Responsive, on-brand websites that feel premium.</span></div>
+          <div class="item"><span class="dot"></span><span>Small games/interactive experiments to delight your audience.</span></div>
+          <div class="item"><span class="dot"></span><span>Clear copy & content library that tells your story.</span></div>
         </div>
 
-        <h3 style="margin-top:.9rem" data-i18n="how_we_work_h">How We Work</h3>
+        <h3 style="margin-top:.9rem">How We Work</h3>
         <div class="list">
-          <div class="item"><span class="dot"></span><span data-i18n="work_collab">Co-create with you—transparent scope, timeline, and feedback loops.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="work_design">Design-first, code-smart: pretty, performant, and purposeful.</span></div>
-          <div class="item"><span class="dot"></span><span data-i18n="work_quality">Premium look & feel, without premium headache.</span></div>
+          <div class="item"><span class="dot"></span><span>Co-create with you—transparent scope, timeline, and feedback loops.</span></div>
+          <div class="item"><span class="dot"></span><span>Design-first, code-smart: pretty, performant, and purposeful.</span></div>
+          <div class="item"><span class="dot"></span><span>Premium look & feel, without premium headache.</span></div>
         </div>
       </div>
     </section>
 
     <section class="card cta">
-      <p data-i18n="cta_line">Ready to turn ideas into a beautiful product?</p>
-      <a href="booking.html" class="btn-primary" data-i18n="cta_btn">Book Me Now</a>
+      <p>Ready to turn ideas into a beautiful product?</p>
+      <a href="booking.html" class="btn-primary">Book Me Now</a>
     </section>
   </main>
 
@@ -189,24 +207,5 @@
   <footer>
     <p>© 2025 DX Atelier Δ — All Rights Reserved</p>
   </footer>
-
-  <script>
-    /* Bahasa sama persis kayak versi kamu, tidak diubah */
-    const t = { /* ... (translations tetap sama) ... */ };
-    function applyLang(lang){
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const k = el.getAttribute("data-i18n");
-        if(t[lang] && t[lang][k]) el.textContent = t[lang][k];
-      });
-    }
-    const sel = document.getElementById("language");
-    const saved = localStorage.getItem("language") || "en";
-    sel.value = saved; applyLang(saved);
-    sel.addEventListener("change", e=>{
-      const lang = e.target.value;
-      localStorage.setItem("language", lang);
-      applyLang(lang);
-    });
-  </script>
 </body>
 </html>
