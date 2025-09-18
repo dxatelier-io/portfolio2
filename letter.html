@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Letter for Miss S</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #1a1a2e, #0f0f1c);
+      color: #f8f8f8;
+      font-family: "Georgia", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .letter {
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      white-space: pre-line;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Typing animation */
+    .typing {
+      overflow: hidden;
+      border-right: .12em solid rgba(255,255,255,0.7);
+      white-space: pre-wrap;
+      animation: typing 12s steps(60, end), blink .8s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: rgba(255,255,255,0.7) }
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.1; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter typing">
+Happy Birthday, Miss S!  
+I know it’s simple, but right now all I can give you is this little letter. We haven’t known each other for long, and there are still so many things about you I haven’t discovered yet—the little details you love, the dreams you’re chasing, the things that make you smile the most. I may not have prepared some grand surprise this time, but I promise I’ll make it up to you. On your next birthday, I hope I can give you something that’s worthy of how special you are.  
+
+Even in the short time I’ve known you, you’ve already left such a beautiful impression on me. That’s why on your birthday, my only wish is for happiness to keep finding you. Whatever you’re hoping for, whatever you’re silently praying for—I’ll be here, believing in it with you.  
+
+So here’s to you, Miss S—may this year bring you love, laughter, and moments that feel like magic.  
+
+Happy birthday again.  
+
+Xo,  
+Delta
+  </div>
+
+  <script>
+    // Generate sparkles
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.left = Math.random() * 100 + "%";
+      s.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>
