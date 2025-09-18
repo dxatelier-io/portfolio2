@@ -16,27 +16,37 @@
       align-items: center;
       overflow: hidden;
       position: relative;
+      padding: 20px;
     }
 
     .letter {
-      max-width: 700px;
-      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      padding: 25px;
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
       box-shadow: 0 0 30px rgba(0,0,0,0.4);
-      font-size: 1.2rem;
-      line-height: 1.8;
-      white-space: pre-line;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
       border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      .letter {
+        font-size: 0.95rem;
+        padding: 18px;
+        line-height: 1.5;
+      }
     }
 
     /* Typing animation */
     .typing {
       overflow: hidden;
       border-right: .12em solid rgba(255,255,255,0.7);
-      white-space: pre-wrap;
-      animation: typing 12s steps(60, end), blink .8s step-end infinite;
+      animation: typing 14s steps(80, end), blink .8s step-end infinite;
     }
 
     @keyframes typing {
